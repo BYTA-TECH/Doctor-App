@@ -1,0 +1,89 @@
+<ion-content color="secondary">
+
+  <form #form="ngForm" >
+    <ion-grid no-padding>
+      <ion-row margin>
+        <ion-col>
+          <ion-item lines="none">
+            <!--Full Name Field-->
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input  type="text" name="fullName" [(ngModel)]="doctor.firstName" required></ion-input>
+          </ion-item>
+          <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('fullName').invalid && showSignupError">FirstName Required</ion-text> -->
+        </ion-col>
+      </ion-row>
+      <ion-row margin>
+        <ion-col>
+          <ion-item lines="none">
+            <!--Email Field-->
+            <ion-label position="floating">Email</ion-label>
+            <ion-input  type="email" name="email" [(ngModel)]="doctor.email" required></ion-input>
+          </ion-item>
+          <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('email').invalid && showSignupError">FirstName Required</ion-text> -->
+        </ion-col>
+      </ion-row>
+      <ion-row margin>
+        <ion-col>
+          <ion-item lines="none">
+            <!--Phone Number Field-->
+            <ion-label position="floating">Phone Number</ion-label>
+            <ion-input type="phone" name="phone" [(ngModel)]="doctor.phoneNumber"  required></ion-input>
+          </ion-item>
+          <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('phone').invalid && showSignupError">FirstName Required</ion-text> -->
+        </ion-col>
+      </ion-row>
+      <ion-row margin>
+        <ion-col>
+          <ion-item lines="none">
+            <!--Specialization Field-->
+            <ion-label position="floating">Specialization</ion-label>
+            <ion-input  type="text" name="specialization" [(ngModel)]="doctor.specialization" required></ion-input>
+          </ion-item>
+          <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('specialization').invalid && showSignupError">FirstName Required</ion-text> -->
+        </ion-col>
+      </ion-row>
+      <ion-row margin>
+        <ion-col>
+          <ion-item lines="none">
+            <!--Register Number Field-->
+            <ion-label position="floating">Register Number</ion-label>
+            <ion-input  type="text" name="registerNumber" [(ngModel)]="doctor.registerNumber" required></ion-input>
+          </ion-item>
+          <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('registerNumber').invalid && showSignupError">FirstName Required</ion-text> -->
+        </ion-col>
+      </ion-row>
+      <ion-row margin>
+          <ion-col>
+            <ion-item lines="none">
+              <!--Username Field-->
+              <ion-label position="floating">Username</ion-label>
+              <ion-input  type="text" name="username" [(ngModel)]="doctor.doctorIdpCode" required></ion-input>
+            </ion-item>
+            <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('username').invalid && showSignupError">FirstName Required</ion-text> -->
+          </ion-col>
+        </ion-row>
+        <ion-row margin>
+            <ion-col>
+              <ion-item lines="none">
+                <!--Password Field-->
+                <ion-label position="floating">Password</ion-label>
+                <ion-input  type="password"  name="password" [(ngModel)]="password" required></ion-input>
+              </ion-item>
+              <!-- <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="signupForm.get('password').invalid && showSignupError">FirstName Required</ion-text> -->
+            </ion-col>
+          </ion-row>
+      <ion-row margin>
+        <ion-col>
+          <ion-text>
+            <p>By Clicking Create Account , You Agree with our
+              <a href=""> Terms and Policies</a>
+            </p>
+          </ion-text>
+          <!--Create Account Button-->
+          <ion-button [disabled]="form.invalid" (click)="createAccount()" expand="block" class="custom">Create Account</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

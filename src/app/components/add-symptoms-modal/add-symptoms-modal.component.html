@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-input #searchInput placeholder="Search For Symptoms"
+        (ionChange)="findMatching('symptoms')"
+        [(ngModel)]="inputValueSymptoms"
+      ></ion-input>
+      <ion-icon slot="end" name="save" (click)="save()"></ion-icon>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item
+      *ngFor="let symptom of tmpOptionsSymptoms"
+      (click)="selectSymptoms(symptom)"
+    >
+      <ion-label>{{ symptom.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer text-center>
+  <ion-badge margin
+    *ngFor="let sSymptom of selectedSymptoms"
+    (click)="removeSymptoms(sSymptom)"
+  >
+    <ion-label>
+      {{ sSymptom.shortname }}
+    </ion-label>
+    <ion-icon name="close"></ion-icon>
+  </ion-badge>
+</ion-footer>
+

@@ -1,0 +1,21 @@
+
+<div class="qualification-container" class="borderBottom" *ngIf="qualifications !== undefined">
+  <ion-grid>
+      <ion-row>
+          <ion-col size="10">
+              <ion-badge padding *ngFor="let qualification of qualifications">
+                  <ion-icon (click)="deleteQualification(qualification.id)" name="close"></ion-icon>
+                  {{qualification.qualification}}
+              </ion-badge>
+              <div  *ngIf="qualifications.length === 0">
+                  <ion-text style="margin-left: 8px">
+                          Add Some Qualifications
+                  </ion-text>
+              </div>
+          </ion-col>
+          <ion-col size="2" text-right>
+              <ion-icon size="large" (click)="addQualificationModal()" name="add"></ion-icon>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</div>

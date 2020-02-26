@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title text-center>Add Prescription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid no-padding>
+    <ion-row justify-content-center margin>
+      <ion-col size="12" margin>
+          <ion-item>
+              <!-- <ion-input placeholder="Drug Name" [(ngModel)]="prescription.drug"></ion-input> -->
+            </ion-item>
+      </ion-col>
+      <ion-col size="12" margin>
+        <ion-item>
+          <ion-label>Drug Strength</ion-label>
+          <!-- <ion-select [(ngModel)]="prescription.dose"> -->
+            <ion-select-option *ngFor="let strength of [5, 10, 15, 20, 25, 30]">{{ strength }}mg</ion-select-option>
+          <!-- </ion-select> -->
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" margin>
+        <ion-item>
+          <ion-label>Drug Dose</ion-label>
+          <!-- <ion-select [(ngModel)]="prescription.frequency"> -->
+            <ion-select-option *ngFor="let dose of ['1-1-1', '0-0-1', '0-1-1', '1-1-1', '1-1-0', '1-0-1']">{{ dose }}
+            </ion-select-option>
+          <!-- </ion-select> -->
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" margin>
+        <ion-item>
+          <!-- <ion-input placeholder="Drug Duration" [(ngModel)]="prescription.period"></ion-input> -->
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
+<ion-footer>
+    <ion-button color="secondary" expand="block" (click)="savePrescription()" margin>Save</ion-button>
+    <ion-button color="primary" expand="block" (click)="dismiss()" margin>Cancel</ion-button>
+</ion-footer>

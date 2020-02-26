@@ -1,0 +1,49 @@
+
+<ion-content color="secondary">
+
+    <form #form="ngForm" [formGroup]="loginForm">
+      <ion-grid padding>
+          <ion-row class="logo">
+              <!--Logo-->      
+            </ion-row>
+        <ion-row margin >
+          <ion-col>
+            <ion-item lines="none">
+              <!--Username Field-->
+                <ion-label position="floating">Username</ion-label>
+                <ion-input formControlName="username" type="text" name="username" [(ngModel)]="username" required></ion-input>
+            </ion-item>
+            <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="loginForm.get('username').invalid && showLoginError">Password Required</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row margin>
+            <ion-col>
+              <ion-item lines="none">
+                <!--Password Field-->
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input formControlName="password" type="password" name="password" [(ngModel)]="password" required></ion-input>
+              </ion-item>
+              <ion-text  class="err-size ion-margin-start" color="danger" *ngIf="loginForm.get('password').invalid && showLoginError">Password Required</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row margin>
+            <ion-col>
+              <!--Login Button-->
+              <ion-button [disabled]="form.invalid" (click)="authenticate()" expand="block" class="custom">Login</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col text-center>
+              <ion-text>
+                <span>
+                  <p>Don' have a Account ?</p>&nbsp; 
+                   <!--Register Link / Button-->
+                  <p (click)="registerPage()">Register</p>
+                </span>
+              </ion-text>
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </form>
+
+</ion-content>

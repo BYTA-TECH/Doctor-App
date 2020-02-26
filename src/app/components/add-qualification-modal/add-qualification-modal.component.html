@@ -1,0 +1,45 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+      <ion-buttons>
+          <ion-button (click)="cancel()"><ion-icon name="close"></ion-icon></ion-button>
+          <ion-title>Add Qualification</ion-title>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <div>
+      <ion-item>
+              <ion-input no-padding (ionChange)="search()" placeholder="Search Qualifications" [(ngModel)]="searchTerm"></ion-input>
+      </ion-item>
+      <div class="selectedContainer"  *ngIf="selected.length > 0" > 
+          <ion-chip *ngFor="let qualification of selected">
+              <ion-text>{{qualification}}</ion-text>
+              <ion-icon name="close" (click)="remove(qualification)"></ion-icon>
+          </ion-chip>
+      </div>
+  </div>
+
+  <div *ngIf="suggestions.length > 0">
+      <ion-item *ngFor="let qualification of suggestions" (click)="select(qualification)">
+          {{qualification}}
+      </ion-item>
+  </div>
+  <div class="suggestionNotFoundContainer" *ngIf="suggestions.length === 0 && firstTime == false" text-center>
+      <ion-text>No Matches Found</ion-text>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+<ion-grid>
+    <ion-row>
+        <ion-col>
+              <ion-button expand="block" fill="outline" (click)="cancel()">Cancel</ion-button>
+        </ion-col>
+        <ion-col>
+              <ion-button [disabled]="selected.length === 0" expand="block" fill="outline" (click)="save()">Save</ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+</ion-footer>

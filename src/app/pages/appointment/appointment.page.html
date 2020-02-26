@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/dashboard" text=""></ion-back-button>
+      <ion-title>Appointments</ion-title>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="currentPage">
+    <ion-segment-button value="pending" *ngIf=" settings.approvalType === 'manual'">Pending</ion-segment-button>
+    <ion-segment-button value="accepted">Accepted</ion-segment-button>
+    <ion-segment-button value="completed">Completed</ion-segment-button>
+  </ion-segment>
+
+
+  <ion-grid>
+    <ion-row>
+
+      <ion-col *ngIf="currentPage === 'pending' && settings.approvalType === 'manual'" >
+          <ion-list >
+              <ion-item lines="full" *ngFor="let a of pendingAppointments" >
+                <ion-thumbnail slot="start">
+                  <ion-img src="/assets/disease.png"></ion-img>
+                </ion-thumbnail>
+                <ion-label margin>
+                  <h1>{{a.name}}</h1>
+                  <p>Age: {{a.age + ' yrs'}}</p>
+                  <h2> {{a.bookingDate + ' : ' +a.bookingTime}}</h2>
+                </ion-label>
+                <ion-button color="primary" (click)="acceptAppointment(a)">
+                  Accept
+                </ion-button>
+                <ion-button color="danger" (click)="declineAppointment(a)">
+                  Decline
+                </ion-button>
+              </ion-item>
+            </ion-list>     
+
+            <ion-grid *ngIf="pendingAppointments.length === 0" class="vertical-align-center-view">
+              <ion-row>
+                <ion-col>
+                    <div >
+                        <ion-text>
+                          <h4>No Pending Appointments(0)</h4>
+                        </ion-text>
+                      </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      </ion-col>
+
+      <ion-col *ngIf="currentPage === 'accepted'">
+        <ion-list>
+          <ion-item lines="full" *ngFor="let a of acceptedAppointments" (click)="startConsultation(a)">
+            <ion-thumbnail slot="start">
+              <ion-img src="/assets/disease.png"></ion-img>
+            </ion-thumbnail>
+            <ion-label margin>
+              <h1>{{a.name}}</h1>
+              <p>Age: {{a.age + ' yrs'}}</p>
+              <h2> {{a.bookingDate + ' : ' +a.bookingTime}}</h2>
+            </ion-label>
+          </ion-item>
+        </ion-list>  
+        <ion-grid *ngIf="acceptedAppointments.length === 0" class="vertical-align-center-view">
+          <ion-row>
+            <ion-col>
+                <div >
+                    <ion-text>
+                      <h4>No Accepted Appointments(0)</h4>
+                    </ion-text>
+                  </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>      
+      </ion-col>
+
+      <ion-col *ngIf="currentPage === 'completed'">
+          <ion-list>
+              <ion-item lines="full" *ngFor="let a of completedAppointments" (click)="viewConsultationHistory(a)">
+                <ion-thumbnail slot="start">
+                  <ion-img src="/assets/disease.png"></ion-img>
+                </ion-thumbnail>
+                <ion-label margin>
+                  <h1>{{a.name}}</h1>
+                  <p>Age: {{a.age + ' yrs'}}</p>
+                  <h2> {{a.bookingDate + ' : ' +a.bookingTime}}</h2>
+                </ion-label>
+              </ion-item>
+            </ion-list>  
+            <ion-grid *ngIf="completedAppointments.length === 0" class="vertical-align-center-view">
+                <ion-row>
+                  <ion-col>
+                      <div >
+                          <ion-text>
+                            <h4>No Completed Appointments(0)</h4>
+                          </ion-text>
+                        </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>      
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+  
+</ion-content>

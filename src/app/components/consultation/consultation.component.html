@@ -1,0 +1,65 @@
+<ion-header no-border>
+    <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+        <ion-button (click)="dismiss()">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-grid margin class="vertical-align-center">
+      <ion-row>
+        <ion-col class="profileImage" size="12" size-md="6" size-xm="6">
+          <ion-thumbnail>
+  
+            <ion-img src="/assets/disease.png"></ion-img>
+  
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12" text-center>
+                <ion-text>
+                  <h2>{{appointment.name}}</h2>
+                  <h4>{{appointment.age}} yrs</h4>
+                </ion-text>
+              </ion-col>
+              <ion-col size="12" text-center *ngIf="status !== 'completed'">
+                <ion-text color="success">
+                  <h3>{{appointment.bookingDate + ' ' + appointment.bookingTime}}</h3>
+                </ion-text>
+              </ion-col>
+              <ion-col text-center *ngIf="status===null">
+                <ion-button (click)="startConsultation()" full-width color="success">Start Consultation</ion-button>
+              </ion-col>
+              <ion-col text-center *ngIf="status==='waiting'">
+                <ion-text color="primary">Waiting...</ion-text>
+              </ion-col>
+              <ion-col text-center *ngIf="status==='canceled'">
+                <ion-text color="danger">
+                  <h2>Canceled</h2>
+                </ion-text>
+                <ion-button (click)="startConsultation()" full-width color="success">Start Consultation</ion-button>
+              </ion-col>
+              <ion-col text-center *ngIf="status==='completed'">
+                <ion-text color="success">
+                  <h2>Completed</h2>
+                  <p>{{appointment.bookingDate + ' ' + appointment.bookingTime}}</p>
+                </ion-text>
+                <ion-button (click)="downloadPrescription()">
+                  Download Prescription
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  
+  <ion-footer  *ngIf="status==='completed'">
+    <ion-button color="secondary" expand="block" margin (click)="downloadPrescription()">OK</ion-button>
+  </ion-footer>

@@ -1,0 +1,50 @@
+
+<div *ngIf="doctor != undefined">
+
+  <!--Profile Top Section Start-->
+  <ion-item lines="none">
+      <ion-text class="ion-margin-vertical">
+          <h4>{{doctor.firstName}}</h4>
+          <p>{{doctor.specialization}}</p>
+          <app-rating [rating]="doctor.totalRating"></app-rating>
+      </ion-text>
+      <ion-icon (click)="selectImage()" *ngIf="doctor.image === null" name="contact" slot="end"
+          class="profile-pic"></ion-icon> 
+        <ion-avatar padding slot="end" class="profile-pic" *ngIf="doctor.image !== null"
+          (click)="selectImage()">
+           <img [src]="'data:' + doctor
+              . imageContentType
+              + ';base64,' + doctor
+              . image
+              " />
+      </ion-avatar> 
+      
+  </ion-item>
+  <!--Profile Top Section End-->
+
+  <!--Profile Details Section Start-->
+  <!-- <app-custom-input [labelName]="'Name'" [defaultValue]="doctor.firstName" [(ngModel)]="doctor.firstName"
+      (saveEvent)="updateDocter()"></app-custom-input> remember to keep this field-->
+
+      <app-custom-input [labelName]="'Name'" [defaultValue]="doctor.firstName" [(ngModel)]="doctor.firstName" 
+      (saveEvent)="updateDoctor()"></app-custom-input>
+
+  <app-custom-input [labelName]="'Specialization'" [defaultValue]="doctor.specialization"
+      [(ngModel)]="doctor.specialization" (saveEvent)="updateDoctor()"></app-custom-input>
+
+  <app-custom-input [labelName]="'Email'" [defaultValue]="doctor.email" [(ngModel)]="doctor.email"
+  (saveEvent)="updateDoctor()"></app-custom-input>
+
+  <app-custom-input [labelName]="'Phone Number'" [defaultValue]="doctor.phoneNumber"
+      [(ngModel)]="doctor.phoneNumber" (saveEvent)="updateDoctor()"></app-custom-input>
+
+  <app-custom-input [labelName]="'Register Number'" [defaultValue]="doctor.registerNumber"
+      [(ngModel)]="doctor.registerNumber" (saveEvent)="updateDoctor()"></app-custom-input>
+
+  <app-custom-date-picker [labelName]="'Practice Since'" [defaultValue]="inputSupportedDate"
+  [(ngModel)]="inputSupportedDate">
+  </app-custom-date-picker>
+
+  <!--Profile Details Section End-->
+
+</div>

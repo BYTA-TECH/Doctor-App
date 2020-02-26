@@ -1,0 +1,35 @@
+// Classes
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    color: white;
+  }
+  
+  ion-col.addBtnContainer {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  ion-item.border-bottom {
+    border-bottom: 1px solid #d2c8c8;
+  }
+  
+  ion-chip.margin {
+    margin-right: 5px;
+  }
+  
+  // Overriding Default Styles
+  ion-chip {
+    margin: 0px;
+  }
+  ion-item {
+    border-bottom: 1px solid black;
+    --background: linear-gradient(#0c1536,#3f4763);
+  }
+  
+  ion-text {
+    color:white;
+    font-family: monospace;
+  }

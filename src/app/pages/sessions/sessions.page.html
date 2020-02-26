@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>sessions</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="addWorkplaceModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-slides>
+    <ion-slide *ngFor="let workplace of workplaces" class="full-height">
+      <app-session [workplace]="workplace" [sessions]="sessionsMap.get(workplace.name)" ></app-session>
+    </ion-slide>
+
+    <ion-slide *ngIf="workplaces.length === 0 && isReady == true" class="info">
+      <ion-button (click)="navigateProfile()">
+        Add Workplaces
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+  
+</ion-content>
+
+
+

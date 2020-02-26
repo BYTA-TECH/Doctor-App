@@ -1,0 +1,23 @@
+mat-toolbar-row {
+    padding: 0px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.selectedContainer {
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.suggestionNotFoundContainer {
+
+    height: 60vh;
+    width: 100vw;
+    justify-content: center;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+}

@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+      <ion-buttons>
+          <ion-button (click)="cancel()">
+              <ion-icon name="close"></ion-icon>
+          </ion-button>
+          <ion-title>Add Workplace</ion-title>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-item>
+        <ion-input>{{doctor.doctorIdpCode}}</ion-input>
+    </ion-item>
+      <ion-item>
+          <ion-input placeholder="Clinic Name" [(ngModel)]="searchClinic" (ionChange)="nameUpdated()" ></ion-input>
+      </ion-item>
+      <!-- *********duplicate code******** -->
+      <ion-item>
+        <ion-input  placeholder="location name" [(ngModel)]="searchLocation" (ionChange)="select($event)" ></ion-input>
+    </ion-item>
+      <!-- *********main code is commented to be used when cloud is up*********** -->
+      <!-- <ion-item>
+          <ion-input placeholder="Location" [(ngModel)]="searchLocation" (keyup)="search($event)" ></ion-input>
+      </ion-item> -->
+  </div>
+  <!-- <div *ngIf="locationSuggetions !== undefined && locationSuggetions.length !== 0">
+      <ion-item *ngFor="let location of locationSuggetions" (click)="select(location)">
+          {{location.description}}
+      </ion-item>
+  </div>
+  <div class="suggestionNotFoundContainer" *ngIf="locationSuggetions.length === 0 && firstTime === false">
+      Searching
+  </div> -->
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+      <ion-row>
+          <ion-col>
+                <ion-button expand="block" fill="outline" (click)="cancel()">Cancel</ion-button>
+          </ion-col>
+          <ion-col>
+                <ion-button [disabled]="selectedLocation === undefined || excludes.includes(searchClinic)" expand="block" fill="outline" (click)="save()">Save</ion-button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-footer>

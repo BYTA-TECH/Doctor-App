@@ -1,0 +1,21 @@
+<ion-toolbar color="secondary" *ngIf="doctor != undefined">
+  <ion-avatar slot="end" *ngIf="doctor.imageLink != null" (click)="profilePage()">
+    <!-- <img [src]="'data:' +  doctor.imageContentType
+    + ';base64,' + doctor.imageLink
+    "> -->
+  </ion-avatar>
+
+
+  <ion-buttons slot="start">
+    <ion-button (click)="settingsPage()">
+        <ion-icon name="settings" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+
+  <ion-buttons slot="end">
+      <ion-button (click)="notificationPage()">
+          <ion-icon name="notifications" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+</ion-toolbar>

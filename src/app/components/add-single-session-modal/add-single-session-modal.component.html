@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+        <ion-col>
+        <ion-item>
+          <ion-label>start</ion-label>
+          <ion-datetime displayFormat="DD MM YY" placeholder="Start Date" [(ngModel)]="session.fromDate"></ion-datetime>
+        </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>end</ion-label>
+            <ion-datetime displayFormat="DD MM YY" placeholder="End Date" [(ngModel)]="session.toDate"></ion-datetime>
+          </ion-item>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Starting Time</ion-label>
+          <ion-input type="time" [(ngModel)]="session.fromTime"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label position="floating">Ending Time</ion-label>
+          <ion-input type="time" [(ngModel)]="session.toTime" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Interval (Minutes)</ion-label>
+          <ion-input [(ngModel)]="session.interval" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-button (click)="addSession()" margin expand="block" color="primary">Add</ion-button>
+</ion-footer>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title>General Settings</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="doctorSettings != undefined">
+  <ion-item lines="full">
+    <ion-text slot="start">Approval Type</ion-text>
+    <ion-select slot="end"  (ionChange)="updateSettngs()" [(ngModel)]="doctorSettings.approvalType">
+      <ion-select-option value="manual">Manual</ion-select-option>
+      <ion-select-option value="automatic">Automatic</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-text slot="start">Email Nofification Enabled</ion-text>
+    <ion-toggle (ionChange)="updateSettngs()" slot="end" [(ngModel)]="doctorSettings.isMailNotificationsEnabled"></ion-toggle>
+  </ion-item>
+  <ion-item lines="full">
+    <ion-text slot="start">SMS Nofification Enabled</ion-text>
+    <ion-toggle (ionChange)="updateSettngs()" slot="end" [(ngModel)]="doctorSettings.isSMSNotificationsEnabled"></ion-toggle>
+  </ion-item>
+</ion-content>

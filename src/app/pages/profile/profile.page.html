@@ -1,0 +1,21 @@
+<ion-header no-border>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Profile</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()">
+        <ion-icon name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <app-profile-details></app-profile-details>
+  <app-profile-qualifications></app-profile-qualifications>
+  <app-profile-workplaces></app-profile-workplaces>
+  
+</ion-content>

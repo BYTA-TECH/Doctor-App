@@ -1,0 +1,29 @@
+// Classes
+
+img.profile-icon {
+  width: 40vw;
+  height: 40vw;
+}
+
+ion-row.logo {
+    height: 47vh;
+    background-image: url(/assets/logo.png);
+    background-color: #0c1536;
+    background-position: 50% 60%;
+    background-size: 80vw;
+    background-repeat: no-repeat;
+}
+
+// Overriding default Elemnt Styles
+
+p {
+  margin: 0px;
+  margin-bottom: 0px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+ion-item {
+  --border-radius:10px;
+}

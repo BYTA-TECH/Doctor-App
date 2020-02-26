@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title>Payment Settings</ion-title>
+      <ion-button (click)="updateSettings()" slot="end">
+        <ion-icon name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="paymentSettings.currency != undefined">
+<ion-grid no-padding>
+  <ion-row class="vertical-align-center">
+    <ion-col class="pd-15" size="10">
+      <ion-text>Currency</ion-text>
+    </ion-col>
+    <ion-col size="2">
+      <ion-input [(ngModel)]="paymentSettings.currency" type="text" placeholder="Exmp"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row class="vertical-align-center">
+    <ion-col class="pd-15" size="10">
+      <ion-text>Amount</ion-text>
+    </ion-col>
+    <ion-col size="2">
+      <ion-input [(ngModel)]="paymentSettings.amount" type="number" placeholder="0.00"></ion-input>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

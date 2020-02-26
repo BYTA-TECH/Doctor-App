@@ -1,0 +1,29 @@
+ion-row.details {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .current {
+    background: blueviolet;
+    color: white;
+  }
+  
+  .heightAdjust {
+    height: 60vh;
+  }
+  
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    padding:5px;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .col {
+      justify-content: center;
+      display: flex;
+  }
+  

@@ -1,0 +1,23 @@
+<ion-header>
+  <app-header></app-header>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="mainGrid">
+    <ion-row>
+        <ion-col class="dashboard vertical-align-center" size="6" *ngFor="let menu of options"
+         (click)="navigateUrl(menu.route)">
+          <ion-grid>
+              <ion-row class="vertical-align-center">
+                      <ion-col class="vertical-align-center">
+                          <ion-icon [name]="menu.icon" class="dashboard big"></ion-icon>
+                      </ion-col>          
+              </ion-row>
+              <ion-row class="vertical-align-center">
+                  <ion-col class="vertical-align-center"><ion-text><h4>{{menu.name}}</h4></ion-text></ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

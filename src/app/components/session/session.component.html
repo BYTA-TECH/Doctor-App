@@ -1,0 +1,94 @@
+
+<ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addSessionsModal()">
+      <ion-icon name="time"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+  <ion-grid class="info" no-margin>
+    <ion-row>
+      <ion-col size="12">                
+            <ion-item lines="none">
+              <ion-thumbnail>
+                <ion-img src="/assets/hospital.png"></ion-img>
+              </ion-thumbnail>
+              <ion-text margin>
+                <h2>{{workplace.name}}</h2>
+                <h3>{{doctor.doctorIdpCode}}</h3>
+                <p>{{workplace.locationName}}</p>
+  
+              </ion-text>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col>
+      <ion-item>
+        <ion-label>start</ion-label>
+        <ion-datetime displayFormat="DD MM YY" placeholder="Start Date" [(ngModel)]="session.fromDate"></ion-datetime>
+      </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label>end</ion-label>
+          <ion-datetime displayFormat="DD MM YY" placeholder="End Date" [(ngModel)]="session.toDate"></ion-datetime>
+        </ion-item>
+      </ion-col>
+  </ion-row> -->
+
+
+    <ion-row justify-content-center class="details">
+      <ion-chip [ngClass]="{'current': day==currentDay}" *ngFor="let day of dayNames" (click)="showSessionForDay(day)">{{day}}</ion-chip>
+    </ion-row>
+
+    <ion-grid>
+      <ion-row *ngIf="currentDayListSessions.length > 0">
+        <ion-col class="col" *ngFor="let session of currentDayListSessions" size="6">
+          <!-- <ion-grid>
+            <ion-row>
+              <ion-col text-center>
+               {{session.interval}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col text-center>
+                {{session.fromTime}}
+              </ion-col>
+              <ion-col text-center>
+                {{session.toTime}}
+              </ion-col>
+            </ion-row>
+            <ion-row>
+            <ion-col text-center>
+              {{session.fromDate}}
+            </ion-col>
+            </ion-row>
+          </ion-grid> -->
+
+          <table>
+            <thead>
+              <tr>
+                <td colspan="2">{{session.fromDate}}</td>
+                <td colspan="2">{{session.toDate}}</td>
+              </tr>
+            </thead>
+            <tr>
+              <td> {{session.fromTime}}</td>
+              <td>{{session.toTime}}</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td colspan="2">{{session.interval}}</td>
+                  </tr>
+            </tfoot>
+          </table>
+
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="currentDayListSessions.length <= 0" class="vertical-align-center-view heightAdjust">
+        <ion-col>
+          <ion-text>No Session Set For {{currentDayFullName}}</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-grid> 
+    

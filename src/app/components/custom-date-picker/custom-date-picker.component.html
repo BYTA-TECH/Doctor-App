@@ -1,0 +1,12 @@
+
+<ion-item class="ion-margin-vertical" lines="none">
+  <input type="date" id="datePicker" slot="start"  color="dark" [(ngModel)]="value"  
+  class="form-control" 
+  (blur)="onBlur()" name="dateField" ngDefaultControl/>
+<ion-text (click)="setFocus()"  slot="start"   *ngIf="editMode" color="secondary">{{value}}</ion-text>
+<ion-icon (click)="close()"  slot="end" name="close"  [hidden]="editMode == false" ></ion-icon>
+<ion-icon (click)="setFocus()"  slot="end" name="save"  [hidden]="editMode == false" ></ion-icon>
+<ion-text (click)="setFocus()"  slot="start" *ngIf="!editMode"  color="primary">{{labelName}}</ion-text>
+<ion-text (click)="setFocus()"  slot="end"   *ngIf="!editMode" color="secondary">{{defaultValue}}</ion-text>
+</ion-item>
+

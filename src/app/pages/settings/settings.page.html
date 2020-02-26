@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Settings</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-item (click)="generalSetting()">
+        <ion-icon name="cog"></ion-icon>
+        <ion-text margin>
+          <p>General Settings</p>
+        </ion-text>
+      </ion-item>
+    </ion-row>
+    <ion-row (click)="paymentSetting()">
+      <ion-item>
+        <ion-icon name="cash"></ion-icon>
+        <ion-text margin>
+          <p>Payment Settings</p>
+        </ion-text>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+</ion-content>
