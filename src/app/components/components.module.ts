@@ -1,3 +1,5 @@
+import { CalendarCardComponent } from './calendar-card/calendar-card.component';
+import { PopoverComponent } from './popover/popover.component';
 import { AddSymptomsModalComponent } from './add-symptoms-modal/add-symptoms-modal.component';
 import { AddPrescriptionComponent } from './add-prescription/add-prescription.component';
 import { AddParamedicalComponent } from './add-paramedical/add-paramedical.component';
@@ -25,7 +27,7 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
 import { GeneralSettingsComponent } from './general-settings/general-settings.component';
 import { PaymentSettingsComponent } from './payment-settings/payment-settings.component';
 
-
+import { NgCalendarModule } from 'ionic2-calendar';
 
 @NgModule({
   declarations: [HeaderComponent,
@@ -48,11 +50,14 @@ AddDiagnosisModalComponent,
 AddMedicalSummaryComponent,
 AddParamedicalComponent,
 AddPrescriptionComponent,
-AddSymptomsModalComponent],
+AddSymptomsModalComponent,
+CalendarCardComponent,
+PopoverComponent],
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule
+    FormsModule,
+    NgCalendarModule,
   ],
   exports: [HeaderComponent,
     SessionComponent,
@@ -60,6 +65,7 @@ AddSymptomsModalComponent],
   AddWorkplaceModalComponent,
   AddQualificationModalComponent,
 ProfileDetailsComponent,
+CalendarCardComponent,
 ProfileQualificationsComponent,
 ProfileWorkplacesComponent,
 CustomInputComponent,
@@ -73,6 +79,7 @@ AddDiagnosisModalComponent,
 AddMedicalSummaryComponent,
 AddParamedicalComponent,
 AddPrescriptionComponent,
-AddSymptomsModalComponent]
+AddSymptomsModalComponent,
+PopoverComponent]
 })
 export class ComponentsModule { }

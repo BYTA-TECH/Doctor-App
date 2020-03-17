@@ -1,0 +1,98 @@
+
+  <ion-toolbar  color="primary">
+    <ion-title>
+      {{ viewTitle }}
+    </ion-title>
+    <ion-buttons slot="end">
+<ion-button (click)="today()">Today</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+
+  <ion-card>
+    <ion-card-header tappable (click)="collapseCard = !collapseCard"> 
+      <ion-card-title>Add Event Here</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!collapseCard">
+      <ion-grid>
+        <ion-row>
+            <ion-col>
+            <ion-item>
+              <ion-label>start</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" placeholder="Start Date" [(ngModel)]="session.fromDate"></ion-datetime>
+              
+              <!-- <ion-input type=date placeholder="Start Date" [(ngModel)]="event.startTime"></ion-input> -->
+            </ion-item>
+            </ion-col>
+            <ion-col>
+              <ion-item>
+                <ion-label>end</ion-label>
+                <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" placeholder="End Date" [(ngModel)]="session.toDate"></ion-datetime>
+                <!-- <ion-input type=date placeholder="End Date" [(ngModel)]="event.endTime"></ion-input> -->
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Starting Time</ion-label>
+              <ion-input type="time" [(ngModel)]="session.fromTime"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position="floating">Ending Time</ion-label>
+              <ion-input type="time" [(ngModel)]="session.toTime" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label>all Day</ion-label>
+              <ion-checkbox [(ngModel)]="event.allDay" ></ion-checkbox>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+          <ion-label>select WeekDay</ion-label>
+          </ion-item>
+        </ion-row>
+        <ion-row justify-content-center class="details">
+          <ion-chip
+            [ngClass]="{ current: day == currentDay }"
+            *ngFor="let day of dayNames"
+            (click)="getSessions(day)">{{ day }}</ion-chip>
+            <!-- this click inside ion-chip to check any session on friday -->
+            <!--  -->
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-item>
+              <ion-label position="floating">Interval (Minutes)</ion-label>
+              <ion-input [(ngModel)]="session.interval" ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+       <ion-button fill="outline" expand="block" (click)="addEvent()">Add</ion-button>
+    </ion-card-content>
+  </ion-card>
+  <div>
+  <calendar [eventSource]="eventSource"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onCurrentDateChanged)="onCurrentDateChanged($event)"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)"
+  startHour="6"
+  endHour="20"
+  step="30"
+  StartingDayWeek="1">
+  
+
+</calendar>
+</div>
+

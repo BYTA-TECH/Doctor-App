@@ -13,11 +13,29 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-item *ngFor="let workplace of workplaces">
+  <ion-buttons (click)="getWorkPlace(workplace)">
+  <ion-card>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="3"><ion-img src="/assets/hospital.png"></ion-img></ion-col>
+            <ion-col>{{workplace.name}}
+              <ion-row>{{workplace.locationName}}</ion-row>
+            </ion-col>
+              <ion-buttons (click)="deleteWorkPlace(workplace.id)"><ion-icon class="trash" ios="ios-trash" md="md-trash"></ion-icon></ion-buttons>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-buttons>
+</ion-item>
   <ion-slides>
-    <ion-slide *ngFor="let workplace of workplaces" class="full-height">
+    <!-- <ion-slide *ngFor="let workplace of workplaces" class="full-height">
       <app-session [workplace]="workplace" [sessions]="sessionsMap.get(workplace.name)" ></app-session>
-    </ion-slide>
+    </ion-slide> -->
 
     <ion-slide *ngIf="workplaces.length === 0 && isReady == true" class="info">
       <ion-button (click)="navigateProfile()">

@@ -38,6 +38,9 @@
                     <h2>{{ session.toTime }}</h2>
                     <h3>{{ session.interval }}</h3> 
                   </ion-label>
+                  <ion-label>
+                    <ion-buttons slot="end" (click)="removeSession(session.id)"><ion-icon ios="trash"></ion-icon></ion-buttons>
+                    </ion-label>
                 </ion-item>
       
                 <ion-item-options side="end">

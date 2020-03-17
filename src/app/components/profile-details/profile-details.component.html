@@ -6,17 +6,14 @@
       <ion-text class="ion-margin-vertical">
           <h4>{{doctor.firstName}}</h4>
           <p>{{doctor.specialization}}</p>
+          <p>{{doctor.doctorIdpCode}}</p>
           <app-rating [rating]="doctor.totalRating"></app-rating>
       </ion-text>
       <ion-icon (click)="selectImage()" *ngIf="doctor.image === null" name="contact" slot="end"
           class="profile-pic"></ion-icon> 
         <ion-avatar padding slot="end" class="profile-pic" *ngIf="doctor.image !== null"
           (click)="selectImage()">
-           <img [src]="'data:' + doctor
-              . imageContentType
-              + ';base64,' + doctor
-              . image
-              " />
+           <img [src]="'data:' + doctor. imageContentType + ';base64,' + doctor. image" />
       </ion-avatar> 
       
   </ion-item>

@@ -69,5 +69,6 @@ export class Util {
     navigateSessions() {
         this.navController.navigateForward('/sessions');
     }
+    
 }
 

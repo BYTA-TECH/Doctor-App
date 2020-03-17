@@ -1,25 +1,24 @@
 /* tslint:disable */
+import { PaymentSettings } from './payment-settings';
 import { ContactInfo } from './contact-info';
 import { DoctorSettings } from './doctor-settings';
-import { PaymentSettings } from './payment-settings';
 import { Qualification } from './qualification';
-import { Slot } from './slot';
 import { UserRatingReview } from './user-rating-review';
 import { WorkPlace } from './work-place';
 export interface Doctor {
-  phoneNumber?: number;
+  paymentSettings?: PaymentSettings;
   contactInfo?: ContactInfo;
+  doctorIdpCode?: string;
   doctorSettings?: DoctorSettings;
   email?: string;
   firstName?: string;
   id?: number;
   imageLink?: string;
-  paymentSettings?: PaymentSettings;
-  doctorIdpCode?: string;
+  dmsId?: string;
+  phoneNumber?: number;
   practiceSince?: string;
   qualifications?: Array<Qualification>;
   registerNumber?: string;
-  slots?: Array<Slot>;
   specialization?: string;
   totalRating?: number;
   userRatingReviews?: Array<UserRatingReview>;

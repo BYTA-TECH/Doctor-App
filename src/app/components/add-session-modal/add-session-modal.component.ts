@@ -1,4 +1,5 @@
-import { DoctorSessionInfoDTO } from './../../api/models/doctor-session-info-dto';
+import { TimingDetailDTO } from './../../api/models/timing-detail-dto';
+// import { DoctorSessionInfoDTO } from './../../api/models/doctor-session-info-dto';
 import { Storage } from '@ionic/storage';
 import { KeycloakService } from './../../services/keycloak.service';
 import { CommandResourceService, QueryResourceService } from 'src/app/api/services';
@@ -26,8 +27,10 @@ export class AddSessionModalComponent implements OnInit {
   
 
   workplace: WorkPlaceDTO;
-  arraySession: DoctorSessionInfoDTO[] = [];
+  arraySession: TimingDetailDTO[] = [];
   dayNumber;
+
+  eventSource: [];
   // monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
   // 'July', 'August', 'September', 'October', 'November', 'December'
   // ];
@@ -83,9 +86,8 @@ export class AddSessionModalComponent implements OnInit {
   //   }
   // }
 
-  createSession(sessions: DoctorSessionInfoDTO[] , success , error) {
+  createSession(sessions: TimingDetailDTO[] , success , error) {
     console.log(sessions);
-    
     this.commandResourceService.createSessionInfoByDatesUsingPOST(sessions
     ).subscribe(data => {
       success();
@@ -94,7 +96,7 @@ export class AddSessionModalComponent implements OnInit {
     });
   }
 
-  public addSessions(sessions: DoctorSessionInfoDTO[], success , error) {
+  public addSessions(sessions: TimingDetailDTO[], success , error) {
     console.log(sessions);
     
     this.createSession(sessions , () => {
@@ -114,12 +116,12 @@ export class AddSessionModalComponent implements OnInit {
     }
   }
 
-  removeSession(session) {
-
+  removeSession(id) {
+// this.commandResourceService.delete
   }
 
   editSession(session) {
-
+// this.commandResourceService.update
   }
 
   getDoctorSessions(username: string , wid: number , pageNumber) {

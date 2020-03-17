@@ -10,10 +10,10 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-item>
-        <ion-input>{{doctor.doctorIdpCode}}</ion-input>
+    <ion-item *ngIf="doctor" >
+        <ion-text>{{doctor.doctorIdpCode}}</ion-text>
     </ion-item>
+  <div>
       <ion-item>
           <ion-input placeholder="Clinic Name" [(ngModel)]="searchClinic" (ionChange)="nameUpdated()" ></ion-input>
       </ion-item>

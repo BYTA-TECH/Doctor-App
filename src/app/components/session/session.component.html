@@ -1,94 +1,102 @@
-
+<ion-content>
 <ion-fab vertical="top" horizontal="end" slot="fixed">
   <ion-fab-button (click)="addSessionsModal()">
-      <ion-icon name="time"></ion-icon>
+    <ion-icon name="time"></ion-icon>
   </ion-fab-button>
 </ion-fab>
-  <ion-grid class="info" no-margin>
-    <ion-row>
-      <ion-col size="12">                
-            <ion-item lines="none">
-              <ion-thumbnail>
-                <ion-img src="/assets/hospital.png"></ion-img>
-              </ion-thumbnail>
-              <ion-text margin>
-                <h2>{{workplace.name}}</h2>
-                <h3>{{doctor.doctorIdpCode}}</h3>
-                <p>{{workplace.locationName}}</p>
-  
-              </ion-text>
-            </ion-item>
-      </ion-col>
-    </ion-row>
-    <!-- <ion-row>
-      <ion-col>
-      <ion-item>
-        <ion-label>start</ion-label>
-        <ion-datetime displayFormat="DD MM YY" placeholder="Start Date" [(ngModel)]="session.fromDate"></ion-datetime>
+
+<ion-grid class="info" no-margin>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item lines="none">
+        <ion-thumbnail>
+          <ion-img src="/assets/hospital.png"></ion-img>
+        </ion-thumbnail>
+        <ion-text>
+          <h2>
+            <app-custom-input
+              [defaultValue]="workplace.name"
+              [(ngModel)]="workplace.name"
+              (saveEvent)="updateWorkPlace(workplace)"
+            ></app-custom-input>
+          </h2>
+          <h2>
+            <app-custom-input
+              [defaultValue]="workplace.locationName"
+              [(ngModel)]="workplace.locationName"
+              (saveEvent)="updateWorkPlace(workplace)"
+            ></app-custom-input>
+          </h2>
+          <h3>{{ workplace.doctorIdpCode }}</h3>
+        </ion-text>
       </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label>end</ion-label>
-          <ion-datetime displayFormat="DD MM YY" placeholder="End Date" [(ngModel)]="session.toDate"></ion-datetime>
-        </ion-item>
-      </ion-col>
-  </ion-row> -->
-
-
-    <ion-row justify-content-center class="details">
-      <ion-chip [ngClass]="{'current': day==currentDay}" *ngFor="let day of dayNames" (click)="showSessionForDay(day)">{{day}}</ion-chip>
-    </ion-row>
-
-    <ion-grid>
-      <ion-row *ngIf="currentDayListSessions.length > 0">
-        <ion-col class="col" *ngFor="let session of currentDayListSessions" size="6">
-          <!-- <ion-grid>
-            <ion-row>
-              <ion-col text-center>
-               {{session.interval}}
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col text-center>
-                {{session.fromTime}}
-              </ion-col>
-              <ion-col text-center>
-                {{session.toTime}}
-              </ion-col>
-            </ion-row>
-            <ion-row>
-            <ion-col text-center>
-              {{session.fromDate}}
-            </ion-col>
-            </ion-row>
-          </ion-grid> -->
-
-          <table>
-            <thead>
-              <tr>
-                <td colspan="2">{{session.fromDate}}</td>
-                <td colspan="2">{{session.toDate}}</td>
-              </tr>
-            </thead>
+    </ion-col>
+  </ion-row>
+  <ion-row justify-content-center class="details">
+    <ion-chip
+      [ngClass]="{ current: day == currentDay }"
+      *ngFor="let day of dayNames"
+      (click)="sessionCreate(day)">{{ day }}</ion-chip>
+  </ion-row>
+</ion-grid>
+<ion-toolbar  color="primary">
+  <ion-title>
+    {{ viewTitle }}
+  </ion-title>
+  <ion-buttons slot="end">
+<ion-button (click)="today()">Today</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+  <div>
+  <calendar [eventSource]="eventSource"
+  [calendarMode]="calendar.mode"
+  [currentDate]="calendar.currentDate"
+  (onCurrentDateChanged)="onCurrentDateChanged($event)"
+  (onEventSelected)="onEventSelected($event)"
+  (onTitleChanged)="onViewTitleChanged($event)"
+  (onTimeSelected)="onTimeSelected($event)"
+  startHour="6"
+  endHour="20"
+  step="30"
+  StartingDayWeek="1">
+  </calendar>
+</div>
+<!-- <ion-grid>
+  <ion-row *ngIf="currentDayListSessions.length > 0">
+    <ion-col class="col" *ngFor="let session of currentDayListSessions" size="6">
+      <table>
+        <thead>
+          <tr>
+            <td colspan="2">{{session.date}}</td>
+          </tr>
+        </thead>
+        <tr>
+          <td> {{session.fromTime}}</td>
+          <td>{{session.toTime}}</td>
+        </tr>
+        <tfoot>
             <tr>
-              <td> {{session.fromTime}}</td>
-              <td>{{session.toTime}}</td>
-            </tr>
-            <tfoot>
-                <tr>
-                    <td colspan="2">{{session.interval}}</td>
-                  </tr>
-            </tfoot>
-          </table>
+                <td colspan="2">{{session.interval}}</td>
+              </tr>
+        </tfoot>
+      </table>
 
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="currentDayListSessions.length <= 0" class="vertical-align-center-view heightAdjust">
-        <ion-col>
-          <ion-text>No Session Set For {{currentDayFullName}}</ion-text>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-grid> 
-    
+    </ion-col>
+  </ion-row>
+<ion-row *ngIf="currentDayListSessions.length <= 0" class="vertical-align-center-view heightAdjust">
+  <ion-col>
+    <ion-text>No Session Set For {{currentDayFullName}}</ion-text>
+  </ion-col>
+  <ion-item>
+    <ion-button (click)="slideto()">
+    <ion-icon slot="end" color="primary" name="arrow-dropright-circle"></ion-icon>
+  </ion-button>
+  </ion-item>
+</ion-row>
+</ion-grid> -->
+</ion-content>
+
+  
+
+
+

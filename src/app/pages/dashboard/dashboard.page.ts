@@ -1,3 +1,4 @@
+import { PopoverComponent } from './../../components/popover/popover.component';
 import { Storage } from '@ionic/storage';
 import { KeycloakService } from './../../services/keycloak.service';
 import { QueryResourceService } from 'src/app/api/services';
@@ -5,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Util } from 'src/app/services/util';
 import { DoctorDTO, QualificationDTO, WorkPlaceDTO, DoctorSettingsDTO, PaymentSettingsDTO } from 'src/app/api/models';
 import { BehaviorSubject } from 'rxjs';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -40,12 +42,14 @@ export class DashboardPage implements OnInit {
   options = [
     {name: 'Sessions', icon: 'clock', route: 'session'},
     {name: 'Appointments', icon: 'calendar', route: 'appointment'}
+    // {name: 'Status', icon: 'information-circle', route: 'status'}
   ];
 
   constructor(private util: Util,
               private queryResourceService: QueryResourceService,
               private keycloakService: KeycloakService,
-              private storage: Storage) {
+              private storage: Storage,
+              public popoverController: PopoverController) {
     if (this.getResetFlag() === true) {
       this.dataInitialize();
     }
@@ -77,7 +81,19 @@ export class DashboardPage implements OnInit {
 
       case 'appointment':
         this.util.navigateAppointments();
+
+//         case 'status':
+// this.presentPopover(null);
     }
+  }
+
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopoverComponent,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
   dataInitialize() {
     this.initDoctor(true);

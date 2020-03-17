@@ -1,0 +1,9 @@
+<!-- show status of the doctor -->
+<ion-item lines="full">
+  <ion-text slot="start">Available</ion-text>
+  <ion-toggle (ionChange)="updateStatus()" slot="end" [(ngModel)]="doctorSettings.isMailNotificationsEnabled"></ion-toggle>
+</ion-item>
+<ion-item lines="full">
+  <ion-text slot="start">Not Available</ion-text>
+  <ion-toggle (ionChange)="updateStatus()" slot="end" [(ngModel)]="doctorSettings.isMailNotificationsEnabled"></ion-toggle>
+</ion-item>

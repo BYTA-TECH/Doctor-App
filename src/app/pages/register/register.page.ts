@@ -22,9 +22,7 @@ export class RegisterPage implements OnInit {
   signupForm = new FormGroup({
     password: new FormControl('', [Validators.required]),
     fullName: new FormControl('', [
-      Validators.required,
-      Validators.pattern('^[a-zA-Z ]*$')
-    ]),
+      Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [
       Validators.required,

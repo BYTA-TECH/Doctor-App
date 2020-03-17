@@ -46,6 +46,7 @@ export class ProfileDetailsComponent implements OnInit {
   getDoctor(user) {
     this.queryResourceService.findDoctorByDoctorIdpCodeUsingGET(user.preferred_username).subscribe(doctor => {
       this.doctor = doctor;
+      console.log("profile details of doctor",doctor);
       if (doctor) {
         const date = new Date(this.doctor.practiceSince);
         this.inputSupportedDate = moment(date).format('YYYY-MM-DD');
@@ -104,10 +105,10 @@ export class ProfileDetailsComponent implements OnInit {
     }) 
   }
 
-  getDocterByIdpCode(user: any){
-    return this.queryResourceService.findDoctorByDoctorIdpCodeUsingGET(user.preferred_username).subscribe(doctor => {
-      this.doctor = doctor});
-  }
+  // getDocterByIdpCode(user: any){
+  //   return this.queryResourceService.findDoctorByDoctorIdpCodeUsingGET(user.preferred_username).subscribe(doctor => {
+  //     this.doctor = doctor});
+  // }
   getDoctorSettings(user: any) {
     return this.queryResourceService.findDoctorSettingsUsingGET(user.preferred_username);
   }

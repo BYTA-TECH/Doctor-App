@@ -1,3 +1,4 @@
+import { PopoverComponent } from './../../components/popover/popover.component';
 import { GeneralSettingsComponent } from 'src/app/components/general-settings/general-settings.component';
 import { ComponentsModule } from './../../components/components.module';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,6 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
     DashboardPageRoutingModule
   ],
   declarations: [DashboardPage],
-  entryComponents: [HeaderComponent, GeneralSettingsComponent]
+  entryComponents: [HeaderComponent, GeneralSettingsComponent,PopoverComponent]
 })
 export class DashboardPageModule {}

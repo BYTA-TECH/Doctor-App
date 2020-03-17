@@ -1,6 +1,7 @@
 /* tslint:disable */
 import { LocalTime } from './local-time';
-export interface DoctorSessionInfoDTO {
+export interface TimingDetailDTO {
+  doctorIdpCode?: string;
   fromDate?: string;
   fromTime?: LocalTime;
   id?: number;
@@ -8,4 +9,5 @@ export interface DoctorSessionInfoDTO {
   toDate?: string;
   toTime?: LocalTime;
   weekday?: number;
+  workPlaceId?: number;
 }

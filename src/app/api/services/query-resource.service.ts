@@ -7,7 +7,6 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Slot } from '../models/slot';
 import { DoctorDTO } from '../models/doctor-dto';
 import { DoctorSettingsDTO } from '../models/doctor-settings-dto';
 import { PageOfSessionInfo } from '../models/page-of-session-info';
@@ -23,10 +22,10 @@ import { PageOfWorkPlace } from '../models/page-of-work-place';
   providedIn: 'root',
 })
 class QueryResourceService extends __BaseService {
-  static readonly createSlotUsingGETPath = '/api/query/Dr-slots/{workPlaceId}/{date}/{doctorIdpCode}';
   static readonly findDoctorByDoctorIdpCodeUsingGETPath = '/api/query/doctor/{doctorIdpCode}';
   static readonly findDoctorSettingsUsingGETPath = '/api/query/doctorSettings/{doctorIdpCode}';
   static readonly findAllSesionInfoByDoctorsWorkPlaceUsingGETPath = '/api/query/findAllSesionInfoByDoctorsWorkPlace/{doctorIdpCode}/{workPlaceId}';
+  static readonly findAllSesionInfoByWeekdayUsingGETPath = '/api/query/findAllSesionInfoByWeekday/{doctorIdpCode}/{weekday}/{workPlaceId}';
   static readonly findAllUserRatingReviewUsingGETPath = '/api/query/findAllUserRatingReview';
   static readonly findPaymentSettingsByDoctorIdpCodeUsingGETPath = '/api/query/findPaymentSettingsByDoctorIdpCode/{doctorIdpCode}';
   static readonly findAllQualificationByDoctorIdpCodeUsingGETPath = '/api/query/qualifications/{doctorIdpCode}';
@@ -38,73 +37,6 @@ class QueryResourceService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
-  }
-
-  /**
-   * @param params The `QueryResourceService.CreateSlotUsingGETParams` containing the following parameters:
-   *
-   * - `workPlaceId`: workPlaceId
-   *
-   * - `doctorIdpCode`: doctorIdpCode
-   *
-   * - `date`: date
-   *
-   * - `sort`: Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-   *
-   * - `size`: Size of a page
-   *
-   * - `page`: Page number of the requested page
-   *
-   * @return OK
-   */
-  createSlotUsingGETResponse(params: QueryResourceService.CreateSlotUsingGETParams): __Observable<__StrictHttpResponse<Array<Slot>>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-
-
-    (params.sort || []).forEach(val => {if (val != null) __params = __params.append('sort', val.toString())});
-    if (params.size != null) __params = __params.set('size', params.size.toString());
-    if (params.page != null) __params = __params.set('page', params.page.toString());
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/api/query/Dr-slots/${params.workPlaceId}/${params.date}/${params.doctorIdpCode}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Slot>>;
-      })
-    );
-  }
-  /**
-   * @param params The `QueryResourceService.CreateSlotUsingGETParams` containing the following parameters:
-   *
-   * - `workPlaceId`: workPlaceId
-   *
-   * - `doctorIdpCode`: doctorIdpCode
-   *
-   * - `date`: date
-   *
-   * - `sort`: Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
-   *
-   * - `size`: Size of a page
-   *
-   * - `page`: Page number of the requested page
-   *
-   * @return OK
-   */
-  createSlotUsingGET(params: QueryResourceService.CreateSlotUsingGETParams): __Observable<Array<Slot>> {
-    return this.createSlotUsingGETResponse(params).pipe(
-      __map(_r => _r.body as Array<Slot>)
-    );
   }
 
   /**
@@ -237,6 +169,73 @@ class QueryResourceService extends __BaseService {
    */
   findAllSesionInfoByDoctorsWorkPlaceUsingGET(params: QueryResourceService.FindAllSesionInfoByDoctorsWorkPlaceUsingGETParams): __Observable<PageOfSessionInfo> {
     return this.findAllSesionInfoByDoctorsWorkPlaceUsingGETResponse(params).pipe(
+      __map(_r => _r.body as PageOfSessionInfo)
+    );
+  }
+
+  /**
+   * @param params The `QueryResourceService.FindAllSesionInfoByWeekdayUsingGETParams` containing the following parameters:
+   *
+   * - `workPlaceId`: workPlaceId
+   *
+   * - `weekday`: weekday
+   *
+   * - `doctorIdpCode`: doctorIdpCode
+   *
+   * - `sort`: Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+   *
+   * - `size`: Size of a page
+   *
+   * - `page`: Page number of the requested page
+   *
+   * @return OK
+   */
+  findAllSesionInfoByWeekdayUsingGETResponse(params: QueryResourceService.FindAllSesionInfoByWeekdayUsingGETParams): __Observable<__StrictHttpResponse<PageOfSessionInfo>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+
+
+    (params.sort || []).forEach(val => {if (val != null) __params = __params.append('sort', val.toString())});
+    if (params.size != null) __params = __params.set('size', params.size.toString());
+    if (params.page != null) __params = __params.set('page', params.page.toString());
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/query/findAllSesionInfoByWeekday/${params.doctorIdpCode}/${params.weekday}/${params.workPlaceId}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<PageOfSessionInfo>;
+      })
+    );
+  }
+  /**
+   * @param params The `QueryResourceService.FindAllSesionInfoByWeekdayUsingGETParams` containing the following parameters:
+   *
+   * - `workPlaceId`: workPlaceId
+   *
+   * - `weekday`: weekday
+   *
+   * - `doctorIdpCode`: doctorIdpCode
+   *
+   * - `sort`: Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
+   *
+   * - `size`: Size of a page
+   *
+   * - `page`: Page number of the requested page
+   *
+   * @return OK
+   */
+  findAllSesionInfoByWeekdayUsingGET(params: QueryResourceService.FindAllSesionInfoByWeekdayUsingGETParams): __Observable<PageOfSessionInfo> {
+    return this.findAllSesionInfoByWeekdayUsingGETResponse(params).pipe(
       __map(_r => _r.body as PageOfSessionInfo)
     );
   }
@@ -480,9 +479,9 @@ class QueryResourceService extends __BaseService {
 module QueryResourceService {
 
   /**
-   * Parameters for createSlotUsingGET
+   * Parameters for findAllSesionInfoByDoctorsWorkPlaceUsingGET
    */
-  export interface CreateSlotUsingGETParams {
+  export interface FindAllSesionInfoByDoctorsWorkPlaceUsingGETParams {
 
     /**
      * workPlaceId
@@ -493,11 +492,6 @@ module QueryResourceService {
      * doctorIdpCode
      */
     doctorIdpCode: string;
-
-    /**
-     * date
-     */
-    date: string;
 
     /**
      * Sorting criteria in the format: property(,asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
@@ -516,14 +510,19 @@ module QueryResourceService {
   }
 
   /**
-   * Parameters for findAllSesionInfoByDoctorsWorkPlaceUsingGET
+   * Parameters for findAllSesionInfoByWeekdayUsingGET
    */
-  export interface FindAllSesionInfoByDoctorsWorkPlaceUsingGETParams {
+  export interface FindAllSesionInfoByWeekdayUsingGETParams {
 
     /**
      * workPlaceId
      */
     workPlaceId: number;
+
+    /**
+     * weekday
+     */
+    weekday: number;
 
     /**
      * doctorIdpCode

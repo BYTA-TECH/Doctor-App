@@ -17,12 +17,14 @@ export class AddWorkplaceModalComponent implements OnInit {
   static _WORKPLACES_KEY = 'workplaces';
 
   excludes: string[] = [];
-  @Input() doctor: DoctorDTO;
+  doctor: DoctorDTO;
   did: number;
 
   searchLocation = '';
 
   searchClinic = '';
+
+  user;
 
   selectedLocation: any;
 
@@ -46,12 +48,24 @@ export class AddWorkplaceModalComponent implements OnInit {
               private keycloakService: KeycloakService) { }
 
   ngOnInit() {
+    this.getCurrentUserDetails();
     if (this.updateMode === true) {
       this.searchClinic = this.workPlace.name;
       this.searchLocation =  this.workPlace.locationName;
       this.selectedLocation = {};
     }
   }
+  getCurrentUserDetails(){
+    this.keycloakService.getCurrentUserDetails()
+    .then(user=>{
+      this.user=user;
+      this.getDoctor(user);
+    }) 
+  }
+  getDoctor(user: any){
+      return this.queryResourceService.findDoctorByDoctorIdpCodeUsingGET(user.preferred_username).subscribe(doctor => {
+        this.doctor = doctor});
+    }
 
   search() {
     this.firstTime = false;
@@ -73,16 +87,18 @@ export class AddWorkplaceModalComponent implements OnInit {
 
   save(){
     console.log('adding workplace');
-    this.addWorkplace(this.username, this.searchClinic, this.searchLocation, this.did);
+    this.addWorkplace(this.user, this.searchClinic, this.searchLocation, this.did);
+    // this.workPlace.doctorIdpCode = this.user.;
+    console.log("workplace doctor idpcode: "+ this.user);
     this.workPlace.name = this.searchClinic;
     this.workPlace.locationName = this.searchLocation;
     // this.updateWorkplace(this.workPlace);
     this.modalController.dismiss();
     
   }
-  public addWorkplace(username: any, name: string, locationName: string , did: number) {
+  public addWorkplace(user: any, name: string, locationName: string , did: number) {
     const workplace: WorkPlaceDTO = {};
-    workplace.doctorIdpCode = username.preferred_username;
+    workplace.doctorIdpCode = user.preferred_username;
     workplace.doctorId = did;
     workplace.name = name;
     workplace.locationName = locationName;

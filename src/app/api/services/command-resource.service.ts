@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { DoctorSessionInfoDTO } from '../models/doctor-session-info-dto';
+import { TimingDetailDTO } from '../models/timing-detail-dto';
 import { NextTaskResource } from '../models/next-task-resource';
 import { BasicCheckUp } from '../models/basic-check-up';
 import { Consultation } from '../models/consultation';
@@ -46,11 +46,13 @@ class CommandResourceService extends __BaseService {
   static readonly deleteQualificationUsingDELETEPath = '/api/commands/qualifications/{id}';
   static readonly requestPatientHistoryUsingPOSTPath = '/api/commands/requestPatientHistory/{processId}';
   static readonly patientPrescriptionUsingPOSTPath = '/api/commands/savePatientPrescription/{processId}';
+  static readonly updateSessionInfoUsingPUTPath = '/api/commands/session-infos';
+  static readonly deleteSessionInfoUsingDELETEPath = '/api/commands/session-infos/{id}';
   static readonly createSessionInfoByDatesUsingPOSTPath = '/api/commands/sessionInfobydate';
   static readonly testUsingPOSTPath = '/api/commands/test';
   static readonly createWorkPlaceUsingPOSTPath = '/api/commands/work-places';
   static readonly updateWorkPlaceUsingPUTPath = '/api/commands/work-places';
-  static readonly deleteWorkPlaceUsingDELETEPath = '/api/commands/work-places';
+  static readonly deleteWorkPlaceUsingDELETEPath = '/api/commands/work-places/{id}';
 
   constructor(
     config: __Configuration,
@@ -60,14 +62,14 @@ class CommandResourceService extends __BaseService {
   }
 
   /**
-   * @param doctorSessionInfoDTO doctorSessionInfoDTO
+   * @param timingDetailDTO timingDetailDTO
    * @return OK
    */
-  createDetailsUsingPOSTResponse(doctorSessionInfoDTO: DoctorSessionInfoDTO): __Observable<__StrictHttpResponse<DoctorSessionInfoDTO>> {
+  createDetailsUsingPOSTResponse(timingDetailDTO: TimingDetailDTO): __Observable<__StrictHttpResponse<TimingDetailDTO>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = doctorSessionInfoDTO;
+    __body = timingDetailDTO;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/api/commands/Details`,
@@ -81,17 +83,17 @@ class CommandResourceService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<DoctorSessionInfoDTO>;
+        return _r as __StrictHttpResponse<TimingDetailDTO>;
       })
     );
   }
   /**
-   * @param doctorSessionInfoDTO doctorSessionInfoDTO
+   * @param timingDetailDTO timingDetailDTO
    * @return OK
    */
-  createDetailsUsingPOST(doctorSessionInfoDTO: DoctorSessionInfoDTO): __Observable<DoctorSessionInfoDTO> {
-    return this.createDetailsUsingPOSTResponse(doctorSessionInfoDTO).pipe(
-      __map(_r => _r.body as DoctorSessionInfoDTO)
+  createDetailsUsingPOST(timingDetailDTO: TimingDetailDTO): __Observable<TimingDetailDTO> {
+    return this.createDetailsUsingPOSTResponse(timingDetailDTO).pipe(
+      __map(_r => _r.body as TimingDetailDTO)
     );
   }
 
@@ -797,14 +799,84 @@ class CommandResourceService extends __BaseService {
   }
 
   /**
-   * @param doctorSessionInfoDTO doctorSessionInfoDTO
+   * @param sessionInfoDTO sessionInfoDTO
    * @return OK
    */
-  createSessionInfoByDatesUsingPOSTResponse(doctorSessionInfoDTO: Array<DoctorSessionInfoDTO>): __Observable<__StrictHttpResponse<Array<SessionInfoDTO>>> {
+  updateSessionInfoUsingPUTResponse(sessionInfoDTO: SessionInfoDTO): __Observable<__StrictHttpResponse<SessionInfoDTO>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    __body = doctorSessionInfoDTO;
+    __body = sessionInfoDTO;
+    let req = new HttpRequest<any>(
+      'PUT',
+      this.rootUrl + `/api/commands/session-infos`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<SessionInfoDTO>;
+      })
+    );
+  }
+  /**
+   * @param sessionInfoDTO sessionInfoDTO
+   * @return OK
+   */
+  updateSessionInfoUsingPUT(sessionInfoDTO: SessionInfoDTO): __Observable<SessionInfoDTO> {
+    return this.updateSessionInfoUsingPUTResponse(sessionInfoDTO).pipe(
+      __map(_r => _r.body as SessionInfoDTO)
+    );
+  }
+
+  /**
+   * @param id id
+   */
+  deleteSessionInfoUsingDELETEResponse(id: number): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'DELETE',
+      this.rootUrl + `/api/commands/session-infos/${id}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * @param id id
+   */
+  deleteSessionInfoUsingDELETE(id: number): __Observable<null> {
+    return this.deleteSessionInfoUsingDELETEResponse(id).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * @param timingDetailDTO timingDetailDTO
+   * @return OK
+   */
+  createSessionInfoByDatesUsingPOSTResponse(timingDetailDTO: Array<TimingDetailDTO>): __Observable<__StrictHttpResponse<Array<SessionInfoDTO>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = timingDetailDTO;
     let req = new HttpRequest<any>(
       'POST',
       this.rootUrl + `/api/commands/sessionInfobydate`,
@@ -823,11 +895,11 @@ class CommandResourceService extends __BaseService {
     );
   }
   /**
-   * @param doctorSessionInfoDTO doctorSessionInfoDTO
+   * @param timingDetailDTO timingDetailDTO
    * @return OK
    */
-  createSessionInfoByDatesUsingPOST(doctorSessionInfoDTO: Array<DoctorSessionInfoDTO>): __Observable<Array<SessionInfoDTO>> {
-    return this.createSessionInfoByDatesUsingPOSTResponse(doctorSessionInfoDTO).pipe(
+  createSessionInfoByDatesUsingPOST(timingDetailDTO: Array<TimingDetailDTO>): __Observable<Array<SessionInfoDTO>> {
+    return this.createSessionInfoByDatesUsingPOSTResponse(timingDetailDTO).pipe(
       __map(_r => _r.body as Array<SessionInfoDTO>)
     );
   }
@@ -947,7 +1019,7 @@ class CommandResourceService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'DELETE',
-      this.rootUrl + `/api/commands/work-places`,
+      this.rootUrl + `/api/commands/work-places/${id}`,
       __body,
       {
         headers: __headers,
