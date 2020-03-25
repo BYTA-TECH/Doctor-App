@@ -1,11 +1,11 @@
 import { WorkPlace } from './../../api/models/work-place';
 // import { FindAllSesionInfoByWeekdayUsingGETParams } from './../../api/services/query-resource.service';
-import { KeycloakService } from "./../../services/keycloak.service";
+import { KeycloakService } from './../../services/keycloak.service';
 import {
   CommandResourceService,
   QueryResourceService
-} from "src/app/api/services";
-import { TimingDetailDTO } from "./../../api/models/timing-detail-dto";
+} from 'src/app/api/services';
+import { TimingDetailDTO } from './../../api/models/timing-detail-dto';
 import {
   Component,
   OnInit,
@@ -14,22 +14,22 @@ import {
   ViewChild,
   LOCALE_ID,
   Inject
-} from "@angular/core";
+} from '@angular/core';
 import {
   SessionInfoDTO,
   WorkPlaceDTO,
   DoctorDTO,
   SessionInfo
-} from "src/app/api/models";
-import { ModalController, AlertController } from "@ionic/angular";
-import { DAY, DAY_FULL_NAME } from "src/app/mocks/day.list";
-import { AddSessionModalComponent } from "../add-session-modal/add-session-modal.component";
-import { CalendarComponent } from "ionic2-calendar/calendar";
+} from 'src/app/api/models';
+import { ModalController, AlertController } from '@ionic/angular';
+import { DAY, DAY_FULL_NAME } from 'src/app/mocks/day.list';
+import { AddSessionModalComponent } from '../add-session-modal/add-session-modal.component';
+import { CalendarComponent } from 'ionic2-calendar/calendar';
 
 @Component({
-  selector: "app-session",
-  templateUrl: "./session.component.html",
-  styleUrls: ["./session.component.scss"]
+  selector: 'app-session',
+  templateUrl: './session.component.html',
+  styleUrls: ['./session.component.scss']
 })
 export class SessionComponent implements OnInit {
   @ViewChild(CalendarComponent, null) myCal: CalendarComponent;
@@ -41,46 +41,46 @@ export class SessionComponent implements OnInit {
 
   currentDayListSessionsMap: {} = {};
   currentDayListSessions = [];
-  currentDay = "";
-  currentDayFullName = "";
+  currentDay = '';
+  currentDayFullName = '';
   dayNames: string[] = DAY;
   session: TimingDetailDTO = {};
   @Input() sesn: SessionInfoDTO = {};
 
   monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
   eventSource = [];
 
   calendar = {
-    mode: "month",
+    mode: 'month',
     currentDate: new Date()
   };
 
   collapseCard = false;
 
   event = {
-    startTime: "",
-    endTime: "",
-    fromTime: "",
-    toTime: "",
+    startTime: '',
+    endTime: '',
+    fromTime: '',
+    toTime: '',
     allDay: true,
-    weekDay: "",
-    interval: ""
+    weekDay: '',
+    interval: ''
   };
 
-  viewTitle = "";
+  viewTitle = '';
 
   minDate = new Date().toISOString();
 
@@ -123,7 +123,7 @@ export class SessionComponent implements OnInit {
         doctorIdpCode: this.user.preferred_username,
         weekday: dayNumber,
       workPlaceId: wrkplaceId
-         
+
       })
       .subscribe(sesion => {
         this.currentDayListSessionsMap[dayNumber] = sesion.content;
@@ -135,17 +135,17 @@ export class SessionComponent implements OnInit {
     this.event = {
       startTime: new Date().toISOString(),
       endTime: new Date().toISOString(),
-      fromTime: "",
-      toTime: "",
-      weekDay: "",
+      fromTime: '',
+      toTime: '',
+      weekDay: '',
       allDay: true,
-      interval: ""
+      interval: ''
     };
   }
 
   onCurrentDateChanged(event) {
     const dateObject = new Date(event);
-    const date = dateObject.toISOString().split("T")[0];
+    const date = dateObject.toISOString().split('T')[0];
     console.log(date);
 
     this.getSessions(dateObject.getDay(), () => {
@@ -188,7 +188,7 @@ export class SessionComponent implements OnInit {
   }
 
   updateWorkPlace(work) {
-    console.log("updated workplace", work);
+    console.log('updated workplace', work);
     return this.commandResourceService
       .updateWorkPlaceUsingPUT(work)
       .subscribe();

@@ -1,3 +1,4 @@
+import { ImageSelectorComponent } from './../../components/image-selector/image-selector.component';
 import { AddWorkplaceModalComponent } from 'src/app/components/add-workplace-modal/add-workplace-modal.component';
 import { ProfileWorkplacesComponent } from './../../components/profile-workplaces/profile-workplaces.component';
 import { ProfileQualificationsComponent } from './../../components/profile-qualifications/profile-qualifications.component';
@@ -27,6 +28,7 @@ import { AddQualificationModalComponent } from 'src/app/components/add-qualifica
     ProfileQualificationsComponent, 
     ProfileWorkplacesComponent,
     AddQualificationModalComponent,
-    AddWorkplaceModalComponent]
+    AddWorkplaceModalComponent,
+  ImageSelectorComponent]
 })
 export class ProfilePageModule {}
